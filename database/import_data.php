@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "Te5t!", "scandiweb_shop");
+$conn = new mysqli("localhost", "root", "Scand!webTestShop", "scandiweb_shop");
 if ($conn->connect_error) {
     exit("DB connect error: " . $conn->connect_error . "\n");
 }
