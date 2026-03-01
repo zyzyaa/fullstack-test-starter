@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$mysqli = new mysqli("localhost", "root", "", "scandiweb_shop");
+$mysqli = new mysqli("localhost", "root", "Te5t!", "scandiweb_shop");
 if ($mysqli->connect_error) {
     die("Connect error: " . $mysqli->connect_error);
 }

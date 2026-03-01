@@ -30,7 +30,7 @@ use App\models\SwatchAttribute;
 class GraphQL {
     static public function handle() {
         try {
-            $mysqli = new \mysqli("localhost", "root", "", "scandiweb_shop");
+            $mysqli = new \mysqli("localhost", "root", "Te5t!", "scandiweb_shop");
             if ($mysqli->connect_error) {
                 throw new RuntimeException("DB connect error: " . $mysqli->connect_error);
             }
