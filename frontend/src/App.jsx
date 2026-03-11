@@ -5,11 +5,12 @@ import Body from "./components/body.jsx";
 import Product from "./components/Product.jsx";
 import "./components/header.css";
 import "./components/body.css";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { placeOrder as placeOrderMutation } from './components/Queries/orderMutations';
 
 
 function App() {
+  const location = useLocation();
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   
@@ -29,6 +30,16 @@ function App() {
       return [];
     }
   });
+
+  useEffect(() => {
+    const pathname = location.pathname || "/";
+    if (pathname === "/" || pathname.startsWith("/product/")) return;
+
+    const categoryFromPath = decodeURIComponent(pathname.replace(/^\/+/, "").split("/")[0] || "");
+    if (categoryFromPath && categoryFromPath !== activeCategory) {
+      setActiveCategory(categoryFromPath);
+    }
+  }, [location.pathname, activeCategory]);
 
   const addToCart = (product, selectedAttributes) => {
     setCartItems(prev => {
@@ -171,7 +182,8 @@ function App() {
         toggleMenu={toggleMenu}
       />
       <Routes>
-        <Route path="/" element={
+        <Route path="/" element={<Navigate to="/all" replace />} />
+        <Route path="/:category" element={
           <Body
             activeCategory={activeCategory}
             addToCart={addToCart}

@@ -77,6 +77,7 @@ return (
           className={`product-gallery ${
             product.gallery && product.gallery.length > 5 ? 'scrollable' : ''
           }`}
+          data-testid="product-gallery"
         >
           {product.gallery && product.gallery.length > 0 ? (
             product.gallery.map((g, i) => (
@@ -141,13 +142,28 @@ return (
                   return 0;
                 })
                 .map(([setName, attrs]) => (
-                  <div key={setName} className="attribute-group">
+                  <div
+                    key={setName}
+                    className="attribute-group"
+                    data-testid={`product-attribute-${setName
+                      .toLowerCase()
+                      .replace(/\s+/g, '-')}`}
+                  >
                     <h3 className="attribute-title">{setName}:</h3>
                     <div className="attribute-options">
                       {attrs.map((attr, index) => {
                         const value = attr.display_value || attr.value;
                         const isSelected = selectedAttributes[setName] === value;
                         const isColor = setName.toLowerCase() === 'color';
+                        const normalizedTestIdValue = (() => {
+                          if (!isColor) return String(value).replace(/\s+/g, '-');
+
+                          const raw = String(attr.value ?? '').trim();
+                          const withHash = raw.startsWith('#') ? raw : `#${raw}`;
+                          if (/^#[0-9a-f]{6}$/i.test(withHash)) return withHash.toUpperCase();
+
+                          return String(attr.display_value || value).replace(/\s+/g, '-');
+                        })();
 
                         return (
                           <button
@@ -157,7 +173,9 @@ return (
                             }`}
                             style={isColor ? { backgroundColor: attr.value } : {}}
                             onClick={() => handleSelect(setName, value)}
-                            data-testid={`product-attribute-${setName.toLowerCase().replace(/\s+/g, '-')}-${value.toLowerCase().replace(/\s+/g, '-')}`}
+                            data-testid={`product-attribute-${setName
+                              .toLowerCase()
+                              .replace(/\s+/g, '-')}-${normalizedTestIdValue}`}
                           >
                             {!isColor && value}
                           </button>

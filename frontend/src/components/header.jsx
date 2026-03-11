@@ -32,7 +32,11 @@ const Header = ({ activeCategory, setActiveCategory, cartItems, cartOpen, setCar
   return (
     <>
       {cartOpen && (
-        <div className="overlay" onClick={() => setCartOpen(false)}></div>
+        <div
+          className="overlay"
+          data-testid="cart-overlay"
+          onClick={() => setCartOpen(false)}
+        ></div>
       )}
     <header className="header" onClick={handleHeaderClick}>
       <button
@@ -49,7 +53,7 @@ const Header = ({ activeCategory, setActiveCategory, cartItems, cartOpen, setCar
           <div key={category} className="category-box">
             <div className="label-box">
               <Link
-                to={`/?category=${encodeURIComponent(category)}`}
+                to={`/${encodeURIComponent(category)}`}
                 onClick={() => { setActiveCategory(category); setMenuOpen(false); }}
                 className={activeCategory === category ? 'active-category-link' : 'category-link'}
                 data-testid={activeCategory === category ? 'active-category-link' : 'category-link'}
@@ -63,7 +67,7 @@ const Header = ({ activeCategory, setActiveCategory, cartItems, cartOpen, setCar
 
       <div className="logo-box">
         <Link 
-          to="/?category=all"
+          to="/all"
           onClick={() => setActiveCategory('all')}
         >
           <img src={logo} alt="Logo" className="logo"/>
