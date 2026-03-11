@@ -8,7 +8,7 @@ header('Content-Type: application/json; charset=UTF-8');
 
 final class Db {
     public static function connect(): \mysqli {
-        $db = new \mysqli('localhost', 'root', 'Den!s52003', 'scandiweb_shop');
+        $db = new \mysqli('localhost', 'root', 'Scand!webTestShop', 'scandiweb_shop');
         if ($db->connect_error) {
             throw new \RuntimeException('DB connection failed: ' . $db->connect_error);
         }

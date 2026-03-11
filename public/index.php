@@ -26,7 +26,6 @@ require_once __DIR__ . '/../models/gallery.php';
 require_once __DIR__ . '/../models/AttributeSet.php';
 require_once __DIR__ . '/../models/ProductAttributeSet.php';
 
-
 use App\models\Category;
 use App\models\Currency;
 use App\models\ProductAttribute;

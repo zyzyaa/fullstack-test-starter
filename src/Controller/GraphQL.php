@@ -26,7 +26,6 @@ use App\models\ProductAttributeSet;
 use App\models\TextAttribute;
 use App\models\SwatchAttribute;
 
-
 class GraphQL {
     static public function handle() {
         try {

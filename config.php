@@ -3,7 +3,7 @@
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'test');
 define('DB_USER', 'zyzyaa');
-define('DB_PASS', 'Den!s52003');
+define('DB_PASS', 'Scand!webTestShop');
 
 try
 {
